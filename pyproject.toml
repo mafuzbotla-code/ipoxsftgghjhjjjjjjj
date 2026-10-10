@@ -1,0 +1,14 @@
+[project]
+name = "fuhx-ip-verify"
+version = "1.0.0"
+description = "FUHX IP Verify System — device fingerprint verification"
+requires-python = ">=3.9"
+dependencies = []
+
+# Application, not a library — uv-কে package build করতে দিও না
+[tool.uv]
+package = false
+
+# Vercel Python entrypoint (CLI 57+ বাধ্যতামূলক: single WSGI/ASGI app)
+[tool.vercel]
+entrypoint = "api.index:app"

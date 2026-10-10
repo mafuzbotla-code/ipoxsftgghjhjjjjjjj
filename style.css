@@ -1,0 +1,119 @@
+/* FUHX SYSTEM VERIFY — red neon minimal UI */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  background:
+    radial-gradient(600px 380px at 50% 0%, rgba(255,45,45,.14), transparent 70%),
+    radial-gradient(900px 600px at 50% 110%, rgba(255,45,45,.06), transparent 70%),
+    #0a0a0e;
+  color:#f2f2f5;
+  font-family:'Hind Siliguri',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:24px 16px;overflow:hidden;
+}
+.wrap{width:100%;max-width:420px;text-align:center;animation:fadeUp .5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.logo{display:flex;justify-content:center;margin-bottom:10px}
+.bolt{
+  width:58px;height:58px;border-radius:16px;font-size:30px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#ff2d2d,#8f0f0f);
+  box-shadow:0 0 22px rgba(255,45,45,.65),0 0 60px rgba(255,45,45,.25);
+  animation:boltGlow 2.2s ease-in-out infinite;
+}
+@keyframes boltGlow{
+  0%,100%{box-shadow:0 0 22px rgba(255,45,45,.65),0 0 60px rgba(255,45,45,.25)}
+  50%{box-shadow:0 0 32px rgba(255,45,45,.95),0 0 90px rgba(255,45,45,.4)}
+}
+.brand{font-size:34px;letter-spacing:6px;font-weight:800}
+.brand span{color:#ff2d2d;text-shadow:0 0 18px rgba(255,45,45,.8)}
+.sys{
+  margin-top:6px;font-size:13px;letter-spacing:8px;color:#9a9aa5;font-weight:600;
+  text-indent:8px;
+}
+
+.stage{
+  margin:34px auto 0;min-height:300px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,45,45,.18);border-radius:24px;
+  padding:44px 20px;
+  box-shadow:inset 0 0 40px rgba(255,45,45,.05),0 10px 40px rgba(0,0,0,.5);
+}
+
+/* ---- loader ---- */
+.loader{position:relative;width:130px;height:130px}
+.ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:4px solid transparent;border-top-color:#ff2d2d;border-right-color:rgba(255,45,45,.35);
+  box-shadow:0 0 18px rgba(255,45,45,.5);
+  animation:spin 1s linear infinite;
+}
+.ring.r2{
+  inset:14px;border-top-color:transparent;border-bottom-color:#ff6b6b;
+  border-right-color:transparent;border-left-color:rgba(255,107,107,.3);
+  box-shadow:0 0 12px rgba(255,107,107,.35);
+  animation:spinRev 1.6s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinRev{to{transform:rotate(-360deg)}}
+.core{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:34px;animation:corePulse 1.4s ease-in-out infinite;
+  filter:drop-shadow(0 0 10px rgba(255,45,45,.8));
+}
+@keyframes corePulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.18);opacity:1}}
+
+.status{margin-top:26px;font-size:15px;color:#9a9aa5;letter-spacing:2px}
+.status.pulse{animation:txtPulse 1.6s ease-in-out infinite}
+@keyframes txtPulse{0%,100%{opacity:.45}50%{opacity:1}}
+
+/* ---- result ---- */
+.result{display:none;width:100%}
+.result.show{display:block;animation:popIn .35s cubic-bezier(.2,1.4,.4,1)}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.icon{
+  width:96px;height:96px;margin:0 auto 18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.icon svg{width:52px;height:52px}
+.icon.ok{
+  background:rgba(34,197,94,.12);border:2px solid #22c55e;
+  box-shadow:0 0 26px rgba(34,197,94,.55);
+}
+.icon.ok svg path{stroke:#22c55e;stroke-width:6;fill:none;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .15s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.icon.bad{
+  background:rgba(255,45,45,.12);border:2px solid #ff2d2d;
+  box-shadow:0 0 26px rgba(255,45,45,.6);
+  animation:shake .45s ease;
+}
+.icon.bad svg path{stroke:#ff2d2d;stroke-width:6;fill:none;stroke-linecap:round;
+  stroke-dasharray:60;stroke-dashoffset:60;animation:draw .4s .1s ease forwards}
+@keyframes shake{
+  0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}
+  40%{transform:translateX(9px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}
+}
+.rtitle{font-size:30px;font-weight:800;letter-spacing:6px;text-indent:6px;margin-bottom:10px}
+.rtitle.ok{color:#22c55e;text-shadow:0 0 20px rgba(34,197,94,.7)}
+.rtitle.bad{color:#ff2d2d;text-shadow:0 0 20px rgba(255,45,45,.8)}
+.rmsg{font-size:14px;color:#9a9aa5;line-height:1.8;max-width:300px;margin:0 auto}
+.rmsg b{color:#f2f2f5}
+
+.retry{
+  margin-top:22px;padding:13px 34px;font-size:15px;font-weight:700;letter-spacing:1px;
+  color:#fff;background:transparent;cursor:pointer;
+  border:2px solid #ff2d2d;border-radius:12px;
+  box-shadow:0 0 16px rgba(255,45,45,.35),inset 0 0 12px rgba(255,45,45,.12);
+  transition:transform .12s ease,box-shadow .2s ease,background .2s ease;
+  animation:retryGlow 2s ease-in-out infinite;
+}
+@keyframes retryGlow{
+  0%,100%{box-shadow:0 0 16px rgba(255,45,45,.35),inset 0 0 12px rgba(255,45,45,.12)}
+  50%{box-shadow:0 0 28px rgba(255,45,45,.65),inset 0 0 18px rgba(255,45,45,.22)}
+}
+.retry:active{transform:scale(.93);background:rgba(255,45,45,.18)}
+
+.foot{margin-top:26px;font-size:11px;letter-spacing:3px;color:#55555f}

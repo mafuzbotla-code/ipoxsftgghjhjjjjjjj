@@ -1,0 +1,1 @@
+# FUHX IP Verify — stdlib only, no dependencies needed
